@@ -16,7 +16,7 @@ class VideoPolicy
         return $user->rol === 'ADMIN';
     }
 
-    public function view(User $user, Video $video)
+    public function view(Video $video)
     {
         //Ver los archivos ocultos
         return $video->disponible == 'si';

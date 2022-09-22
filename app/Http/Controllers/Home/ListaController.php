@@ -21,7 +21,9 @@ class ListaController extends Controller
 
     public function show(Lista $lista)
     {
-        $this->authorize('view', $lista);
+        if ($lista->disponible == 'no') {
+            return \abort(404);
+        }
         
         return \view('home.listas.show', \compact('lista'));
 

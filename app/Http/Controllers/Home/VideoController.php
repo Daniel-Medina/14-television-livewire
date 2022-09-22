@@ -43,7 +43,9 @@ class VideoController extends Controller
 
     public function show(Video $video)
     {
-        $this->authorize('view', $video);
+        if ($video->disponible == 'no') {
+            return \abort(404);
+        }
         
         $similares = Video::where('disponible', 'si')
                             ->where('id', '!=', $video->id)
