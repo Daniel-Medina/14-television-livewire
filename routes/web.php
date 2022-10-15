@@ -27,6 +27,11 @@ Route::get('listas', [ListaController::class, 'index'])->name('listas.index');
 Route::get('listas/{lista}', [ListaController::class, 'show'])->name('listas.show');
 Route::get('listas/{lista}/{video}', [ListaController::class, 'details'])->name('listas.details');
 
+//Politicas de privacidad
+Route::get('privacidad', function() {
+    return view('home.politicas');
+});
+
 
 /* Route::middleware([
     'auth:sanctum',
