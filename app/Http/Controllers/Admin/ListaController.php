@@ -36,7 +36,7 @@ class ListaController extends Controller
 
         $request->validate([
             'nombre' => 'required|min:8|unique:listas,nombre',
-            'descripcion' => 'required|min:10',
+            'descripcion' => 'required|min:10|max:255',
             'imagen' => 'nullable|image',
         ]);
 
@@ -92,7 +92,7 @@ class ListaController extends Controller
         //
         $request->validate([
             'nombre' => 'required|min:8|unique:listas,nombre,' . $lista->id,
-            'descripcion' => 'required|min:10',
+            'descripcion' => 'required|min:10|max:255',
             'imagen' => 'nullable|image',
         ]);
 

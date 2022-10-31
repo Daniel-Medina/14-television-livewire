@@ -52,7 +52,7 @@ class VideoController extends Controller
         $reglas = [
             'imagen' => 'nullable|image',
             'nombre' => 'required|min:8|max:250',
-            'descripcion' => 'required|min:8',
+            'descripcion' => 'required|min:8|max:3000',
             'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
             'plataforma_id' => 'required',
         ];
@@ -141,7 +141,7 @@ class VideoController extends Controller
         $reglas = [
             'imagen' => 'nullable|image',
             'nombre' => 'required|min:8|max:250',
-            'descripcion' => 'required|min:8',
+            'descripcion' => 'required|min:8|max:3000',
             //reglas de validacion de youtube
             'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
             'plataforma_id' => 'required',
