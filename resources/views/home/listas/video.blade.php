@@ -37,10 +37,16 @@
 
                 </div>
 
+
+                <!-- Comentarios del video -->
+                @if ($comentarios)
+                    @livewire('videos.show', ['video' => $video])
+                @endif
+
             </div>
 
             <div
-                class="h-full col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1">
+                class="h-full items-start col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1">
                 <!-- Listar los videos sugeridos -->
                 @forelse ($similares as $similar)
                     

@@ -58,13 +58,13 @@ $labelStyle = 'block font-medium text-sm text-gray-700';
         <!-- Visibilidad y Asignacion de la lista -->
         <div class="mt-6 grid grid-cols-2 gap-6">
             <div class="">
-                {!! Form::label('portada', 'Colocar como portada', ['class' => $labelStyle]) !!}
+                {!! Form::label('principal', 'Colocar como portada', ['class' => $labelStyle]) !!}
 
-                {!! Form::select('portada', ['no' => 'No establecer principal', 'si' => 'Marcar como portada'], null, [
+                {!! Form::select('principal', ['no' => 'No establecer principal', 'si' => 'Marcar como portada'], null, [
                     'class' => $inputStyle,
                 ]) !!}
 
-                @error('portada')
+                @error('principal')
                     <span class="text-red-600 font-bold mt-2">{{ $message }}</span>
                 @enderror
 

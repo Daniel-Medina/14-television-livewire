@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Config;
 use App\Models\Lista;
 use App\Models\Video;
 use App\Models\Vista;
@@ -50,13 +51,16 @@ class ListaController extends Controller
             }
         }
 
+        //Recuperar la configuracion de comentarios
+        $comentarios = Config::find(1)->comentarios;
+
 
         //Si se encuentra regresar la lista
         if ($encontrado) {
             //Actualizar las vistas
             $this->addView($video);
             //Regresar la vista
-            return view('home.listas.video', \compact('lista', 'video', 'similares'));
+            return view('home.listas.video', \compact('lista', 'video', 'similares', 'comentarios'));
 
         } else {
             //Si no se encuentra devolver un error

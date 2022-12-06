@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('nombre');
+            $table->string('slug')->nullable();
             $table->text('descripcion');
             $table->string('url'); //Clave que genera vimeo o youtube
             $table->string('iframe')->nullable();

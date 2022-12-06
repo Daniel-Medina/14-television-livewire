@@ -1248,6 +1248,12 @@ select {
 .col-span-5 {
   grid-column: span 5 / span 5;
 }
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+.row-span-3 {
+  grid-row: span 3 / span 3;
+}
 .float-right {
   float: right;
 }
@@ -1342,12 +1348,6 @@ select {
 .mb-10 {
   margin-bottom: 2.5rem;
 }
-.mr-4 {
-  margin-right: 1rem;
-}
-.mt-12 {
-  margin-top: 3rem;
-}
 .ml-8 {
   margin-left: 2rem;
 }
@@ -1356,6 +1356,12 @@ select {
 }
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+.mr-4 {
+  margin-right: 1rem;
+}
+.mt-12 {
+  margin-top: 3rem;
 }
 .block {
   display: block;
@@ -1566,6 +1572,9 @@ select {
 .flex-row {
   flex-direction: row;
 }
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
 .flex-col {
   flex-direction: column;
 }
@@ -1574,6 +1583,9 @@ select {
 }
 .flex-nowrap {
   flex-wrap: nowrap;
+}
+.items-start {
+  align-items: flex-start;
 }
 .items-center {
   align-items: center;
@@ -1720,6 +1732,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
+.border-red-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity));
+}
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
@@ -1774,6 +1790,10 @@ select {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 .bg-zinc-200 {
   --tw-bg-opacity: 1;
@@ -1929,11 +1949,11 @@ select {
 .pb-8 {
   padding-bottom: 2rem;
 }
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
 .pt-8 {
   padding-top: 2rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 .pt-0 {
   padding-top: 0px;
@@ -2706,14 +2726,14 @@ select {
     border-left-width: 1px;
   }
 
-  .md\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .md\:px-6 {
@@ -2782,6 +2802,10 @@ select {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-2 {

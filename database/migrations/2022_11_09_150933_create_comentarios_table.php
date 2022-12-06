@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('listas', function (Blueprint $table) {
+        Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('slug')->nullable();
-            $table->string('descripcion');
-            $table->string('miniatura')->nullable();
-            $table->enum('portada', ['si', 'no'])->default('no');
-            $table->enum('disponible', ['si', 'no'])->default('si');
-            //LLaves foraneas 
+
+            $table->text('mensaje');
+
+            //Llaves
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('video_id');
+            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('listas');
+        Schema::dropIfExists('comentarios');
     }
 };

@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Canal;
 use App\Models\Plataforma;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,13 +28,21 @@ class DatabaseSeeder extends Seeder
             'rol' => 'ADMIN',
         ]);
 
+        Canal::create([
+            'clave' => \uniqid(),
+            'descripcion' => 'Hola este es mi canal',
+            'user_id' => $user->id,
+        ]);
+
+        
         $plataforma = Plataforma::create([
             'nombre' => 'Vimeo',
         ]);
-
+        
         $plataforma = Plataforma::create([
             'nombre' => 'Youtube',
         ]);
-
+        
+        Video::factory(30)->create();
     }
 }

@@ -17,12 +17,24 @@ class Lista extends Model
 
     protected $fillable = [
         'nombre',
+        'slug',
         'descripcion',
         'miniatura',
         'portada',
         'disponible',
         'user_id',
     ];
+
+    //Regresar el slug del video
+    public function getRouteKeyName()
+    {
+        //validar la configuracion
+        if (Config::all()->first()->urls_amigables == true) {
+            return 'slug';
+        } else {
+            return 'id';
+        }
+    }
 
     public function user()
     {

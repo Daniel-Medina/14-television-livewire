@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Config;
 use App\Models\Video;
 use App\Models\Vista;
 use Carbon\Carbon;
@@ -18,12 +19,16 @@ class VideoController extends Controller
             //Obtener el primer video
             $videoPortada = Video::where('portada', 'si')
                 ->where('disponible', 'si')
-                ->get()
-                ->first() ?? Video::where('disponible', 'si') #validar si existen videos publicos
-                ->get()
-                ->count() > 0 ? Video::where('disponible', 'si')
-                ->get()
-                ->random() : []; # Si no existen devolver un array vacio
+                ->get()->first(); 
+
+                // si el video esta vacio
+                if ($videoPortada == null) {
+                    //Obtener un video al azar
+                    $videoPortada = Video::where('disponible', 'si')
+                        ->get()
+                        ->random();
+                }
+
         } else {
             $videoPortada = [];
         }
@@ -35,8 +40,9 @@ class VideoController extends Controller
 
     public function index()
     {
-        $videos = Video::where('disponible', 'si')
-                        ->paginate(30);
+        $videos = Video::orderBy('id', 'desc')
+                        ->where('disponible', 'si')
+                        ->paginate(6);
 
         return \view('home.videos.index', \compact('videos'));
     }
@@ -55,7 +61,10 @@ class VideoController extends Controller
         //Actualizar el contador
         $this->addView($video);
 
-        return view('home.videos.show', \compact('video', 'similares'));
+        //Recuperar la configuracion de comentarios
+        $comentarios = Config::find(1)->comentarios;
+
+        return view('home.videos.show', \compact('video', 'similares', 'comentarios'));
     }
 
     //Agregar vista a un video

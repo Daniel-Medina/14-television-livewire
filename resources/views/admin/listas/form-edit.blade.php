@@ -3,9 +3,9 @@ $inputStyle = 'border-gray-300 focus:border-indigo-300 focus:ring focus:ring-ind
 $labelStyle = 'block font-medium text-sm text-gray-700';
 @endphp
 
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" x-data="{ open : true }">
     <!-- Detalles de la lista -->
-    <div class="h-auto rounded relative">
+    <div class="h-auto rounded relative row-span-2">
         <div class="flex flex-col bg-white p-4 rounded-lg shadow">
             <img src="{{ $lista->imagen }}" id="picture" class="w-full" alt="">
 
@@ -76,23 +76,10 @@ $labelStyle = 'block font-medium text-sm text-gray-700';
         </div>
     </div>
 
-
-    <!-- Videos contenidos -->
-    <div class="col-span-1 xl:col-span-2 grid grid-cols-1 xl:grid-cols-3 gap-0 xl:gap-4">
-        {{-- Recorrer --}}
-        @forelse ($lista->videos as $video)
-            
-            <div class="relative w-full mb-6 pl-2">
-                <img src="{{ $video->imagen }}" class="w-full lg:h-64 xl:h-44 object-cover object-center" alt="">
-                <div>
-                    <h2 class="text-left px-2 mt-2 font-bold text-gray-400 text-xl">{{ $video->nombre }}</h2>
-                </div>
-                {!! Form::checkbox('videos[]', $video->id, true, ['class' => 'absolute right-0 top-0 w-8 h-8']) !!}
-            </div>
-
-        @empty
-            <h1 class="col-span-1 xl:col-span-3 text-center text-gray-600 font-semibold text-xl">La lista no contiene videos</h1>
-        @endforelse
+    
+    <!-- Agregar nuevos videos a la lista -->
+    <div class="col-span-1 xl:col-span-2" x-show="open == true">
+        @livewire('admin.listas.lista-filtro')
     </div>
 
     <script src="{{ asset('js/form-img.js') }}"></script>

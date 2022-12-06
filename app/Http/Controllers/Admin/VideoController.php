@@ -11,6 +11,7 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
@@ -51,7 +52,7 @@ class VideoController extends Controller
         //Reglas de validacion
         $reglas = [
             'imagen' => 'nullable|image',
-            'nombre' => 'required|min:8|max:250',
+            'nombre' => 'required|min:8|max:250|unique:videos',
             'descripcion' => 'required|min:8|max:3000',
             'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
             'plataforma_id' => 'required',
@@ -99,8 +100,12 @@ class VideoController extends Controller
             }
         }
 
+        // generar el slug correspondiente
+        $slug = Str::slug($request->nombre, '-');
+
         $video = Video::create([
             'nombre' => $request->nombre,
+            'slug' => $slug,
             'descripcion' => $request->descripcion,
             'portada' => $portada,
             'disponible' => $disponible,
@@ -140,7 +145,7 @@ class VideoController extends Controller
         //Reglas de validacion
         $reglas = [
             'imagen' => 'nullable|image',
-            'nombre' => 'required|min:8|max:250',
+            'nombre' => 'required|min:8|max:250|unique:videos,nombre,' . $video->id,
             'descripcion' => 'required|min:8|max:3000',
             //reglas de validacion de youtube
             'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
@@ -194,9 +199,13 @@ class VideoController extends Controller
                 }
             }
 
+            //generar el slug nuevo
+            $slug = Str::slug($request->nombre, '-');
+
 
             $video->update([
                 'nombre' => $request->nombre,
+                'slug' => $slug,
                 'descripcion' => $request->descripcion,
                 'portada' => $portada,
                 'disponible' => $disponible,

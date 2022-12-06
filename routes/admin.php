@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', PanelController::class)->name('dashboard');
+Route::view('zona-ajustes', 'admin.desarrollador')->name('developers');
 
 //Controlador
 Route::resource('videos', VideoController::class)->names('videos')->only('index', 'create', 'edit', 'update', 'store', 'destroy');

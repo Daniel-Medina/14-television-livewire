@@ -41,7 +41,13 @@
                     <div class="px-4 mt-2 font-serif">
                         No se encuentran videos contacte a un administrador.
                     </div>
-                @endforelse
+            @endforelse
+
+            @if ($videos)
+                <div class="col-span-1 md:col-span-2 lg:col-span-3 pb-12">
+                    {{ $videos->links() }}
+                </div>
+            @endif
 
         </div>
         

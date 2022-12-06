@@ -2,7 +2,7 @@
 
     <!-- Filtros de la aplicacion -->
     <div class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 bg-white rounded-lg shadow py-4 px-6">
-        <div class="grid md:grid-cols-3 md:gap-3 lg:gap-6 items-center">
+        <div class="grid md:grid-cols-3 lg:grid-cols-5 md:gap-3 lg:gap-6 items-center">
             <!-- Buscar por input -->
             <div>
                 <x-jet-label>Buscar por nombre</x-jet-label>
@@ -11,14 +11,33 @@
             <!-- Buscar de acuerdo a la disponibilidad -->
             <div>
                 <x-jet-label>Visibilidad</x-jet-label>
-                <select wire:model="visibilidad"
+                <select wire:model="orderBy"
+                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                    <option value="nombre" selected>Nombre</option>
+                    <option value="created_at">Fecha</option>
+                    <option value="updated_at">Actualización</option>
+                </select>
+            </div>
+            <!-- Ordenar por -->
+            <div>
+                <x-jet-label>Orden</x-jet-label>
+                <select wire:model="orderType"
+                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+            </div>
+            <!-- Ordenar por -->
+            <div>
+                <x-jet-label>Ordenar por</x-jet-label>
+                <select  wire:model="visibilidad"
                     class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
                     <option value="none" selected>Todo</option>
                     <option value="si">Disponible</option>
                     <option value="no">Oculto</option>
                 </select>
             </div>
-            <!-- Boton agregar nuevo regiistro -->
+            <!-- Boton agregar nuevo registro -->
             <div class="text-right">
                 <a href="{{ route('admin.videos.create') }}">
                     <x-jet-button>

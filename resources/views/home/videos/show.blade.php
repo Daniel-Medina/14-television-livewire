@@ -17,8 +17,8 @@
                     <div class="flex items-center">
                         <div class="mr-4">
                             <!-- Imagen del usuario -->
-                            <img src="{{ $video->imagen }}"
-                                class="w-10 h-10 rounded-full shadow object-cover object-center" alt="">
+                            <img src="{{ $video->foto_user }}"
+                                class="w-10 h-10 rounded-full shadow object-fit object-center" alt="">
                         </div>
     
                         <!-- Nombre del autor -->
@@ -37,6 +37,11 @@
     
                 </div>
     
+                <!-- Comentarios del video -->
+                @if ($comentarios)
+                    @livewire('videos.show', ['video' => $video])
+                @endif
+
             </div>
     
             <!-- Listar los videos sugeridos -->

@@ -18,6 +18,7 @@ class Video extends Model
 
     protected $fillable = [
         'nombre',
+        'slug',
         'descripcion',
         'miniatura',
         'portada',
@@ -30,7 +31,15 @@ class Video extends Model
     ];
 
     //Regresar el slug del video
-    #No se usa slug solo el id
+    public function getRouteKeyName()
+    {
+        //validar la configuracion
+        if (Config::all()->first()->urls_amigables == true) {
+            return 'slug';
+        } else {
+            return 'id';
+        }
+    }
 
     public function canal() {
         return $this->belongsTo(Canal::class);
@@ -46,6 +55,11 @@ class Video extends Model
 
     public function listas() {
         return $this->belongsToMany(Lista::class);
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
     }
 
     //Recuperar imagen vacia

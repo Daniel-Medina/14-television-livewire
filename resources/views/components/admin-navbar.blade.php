@@ -20,6 +20,11 @@ $rutas = [
         'enlace' => route('root'),
         'activo' => request()->routeIs('root'),
     ],
+    [
+        'nombre' => __('Desarrollador'),
+        'enlace' => route('admin.developers'),
+        'activo' => request()->routeIs('admin.developers'),
+    ],
 ];
 @endphp
 

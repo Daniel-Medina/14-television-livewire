@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lista;
+use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class ListaController extends Controller
@@ -50,8 +52,12 @@ class ListaController extends Controller
                 $img = $request->file('imagen')->store('miniaturas', 'public');
             }
 
+            //crear el slug
+            $slug = Str::slug($request->nombre, '-');
+
             Lista::create([
                 'nombre' => $request->nombre,
+                'slug' => $slug,
                 'descripcion' => $request->descripcion,
                 'portada' => 'no',
                 'disponible' => 'no',
@@ -76,7 +82,6 @@ class ListaController extends Controller
     {
         //
         $this->authorize('update', $lista);
-
         return \view('admin.listas.edit', \compact('lista'));
 
     }
@@ -149,9 +154,13 @@ class ListaController extends Controller
                 }
             }
 
+            //crear el slug
+            $slug = Str::slug($request->nombre, '-');
+
             //Guardar la lista
             $lista->update([
                 'nombre' => $request->nombre,
+                'slug' => $slug,
                 'descripcion' => $request->descripcion,
                 'portada' => $portada,
                 'disponible' => $disponible,
